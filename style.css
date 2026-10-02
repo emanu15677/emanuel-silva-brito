@@ -1,0 +1,182 @@
+:root {
+    --cor-fundo: #01080E;
+    --cor-principal: #0B0D20;
+    --cor-secundaria: #212333;
+    --cor-destaque: #2BDEFD;
+    --cor-texto: #D7F9FF;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    padding: 16px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 3px;
+    z-index: 10;
+    border-radius: 6px;
+    padding: 2px;
+    background: conic-gradient(
+        #ff3cac,
+        #ff8a3d,
+        #ffe66d,
+        #63ff8f,
+        #2bdeef,
+        #4d7cff,
+        #bd62ff,
+        #ff3cac
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    box-shadow: 0 0 12px rgba(43, 222, 239, 0.2);
+    pointer-events: none;
+    animation: rgb-borda 12s linear infinite;
+}
+
+@keyframes rgb-borda {
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.caixa-principal {
+    background-color: var(--cor-principal);
+    width: 100%;
+    max-width: 640px;
+    margin-block: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: var(--cor-destaque);
+}
+
+.indicador-progresso {
+    margin: 0 0 12px;
+    color: var(--cor-destaque);
+    font-size: 0.85rem;
+}
+
+.caixa-perguntas {
+    line-height: 1.5;
+}
+
+.caixa-alternativas {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto);
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    width: 100%;
+    font: inherit;
+    line-height: 1.4;
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.18s ease,
+        box-shadow 0.25s ease;
+}
+
+button:hover {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(43, 222, 253, 0.2);
+}
+
+button:active {
+    transform: translateY(1px) scale(0.985);
+    box-shadow: 0 2px 6px rgba(43, 222, 253, 0.16);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--cor-destaque);
+    outline-offset: 3px;
+}
+
+button:disabled,
+button:disabled:hover {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+}
+
+.controles-quiz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.botao-voltar {
+    width: auto;
+    min-width: 160px;
+    padding: 10px 14px;
+}
+
+.estado-quiz {
+    margin: 0;
+    color: var(--cor-destaque);
+    font-size: 0.85rem;
+}
+
+.texto-resultado {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.texto-resultado:not(:empty) {
+    margin-top: 20px;
+}
+
+.botao-reiniciar {
+    width: auto;
+    min-width: 180px;
+    margin-top: 20px;
+}
+
+.botao-reiniciar[hidden] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none;
+    }
+
+    button {
+        transition: none;
+    }
+
+    button:hover,
+    button:active {
+        transform: none;
+    }
+}
